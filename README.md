@@ -1,2 +1,3 @@
 # cloud-talk-cats-or-dogs
-Demo infrastructure as code for cloud talk series
+
+Demo Infrastructure as Code for Cloud Talk series
