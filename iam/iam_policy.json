@@ -1,0 +1,36 @@
+{
+    "Statement": [
+        {
+          "Action": [
+              "cloudformation:DescribeStackResource",
+              "cloudformation:SignalResource"
+          ],
+          "Effect": "Allow",
+          "Resource": [
+            "arn:${partition}:cloudformation:${region}:${account_id}:stack/cats-or-dogs-*"
+          ],
+          "Sid": "CfnActions"
+        },
+        {
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::cats-or-dogs-${account_id}/*"
+            ],
+            "Sid": "S3ObjectActions"
+        },
+        {
+          "Action": [
+              "s3:ListBucket"
+          ],
+          "Effect": "Allow",
+          "Resource": [
+              "arn:aws:s3:::cats-or-dogs-${account_id}"
+          ],
+          "Sid": "S3BucketActions"
+        }
+    ],
+    "Version": "2012-10-17"
+}

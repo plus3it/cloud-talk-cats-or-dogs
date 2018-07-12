@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body onload='load_home()'>
+<div id='dynamic_html'> </div>
+<script>
+  base_url = '{{ base_url }}'
+
+  function get_image(animal) {
+    // Determine animal.
+    animal_picture = Math.floor(Math.random() * 4) + 1;
+    return '<img src="' + base_url + '/' + animal.toLowerCase() + '/' + animal_picture + '.jpg">'
+  }
+
+  function load_home() {
+    var cats_az = '{{ cats_az }}'
+    var az = '{{ az }}'
+    var dogs = 'Dogs'
+    var cats = 'Cats'
+    var best_animal = dogs
+    var worse_animal = cats
+    if (az == cats_az) {
+      best_animal = cats
+      worse_animal = dogs
+    }
+    var content = '<h1>' + best_animal + ' are better than ' + worse_animal + '!!!</h1><p/>' + get_image(best_animal)
+    document.getElementById('dynamic_html').innerHTML=content;
+  }
+</script>
+</body>
+</html>
