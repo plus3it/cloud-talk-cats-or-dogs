@@ -1,4 +1,14 @@
 ###
+### VARIABLES
+###
+
+variable "url_suffix" {
+  default     = "amazonaws.com"
+  description = "URL suffix associated with the current partition"
+  value       = "string"
+}
+
+###
 ### LOCALS
 ###
 
@@ -32,7 +42,7 @@ data "aws_iam_policy_document" "instance_trust_policy" {
 
     principals {
       type        = "Service"
-      identifiers = ["ec2.amazonaws.com"]
+      identifiers = ["ec2.${var.url_suffix}"]
     }
   }
 }
