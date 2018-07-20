@@ -17,7 +17,7 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:s3:::cats-or-dogs-${account_id}/*"
+                "arn:${partition}:s3:::cats-or-dogs-${account_id}/*"
             ],
             "Sid": "S3ObjectActions"
         },
@@ -27,7 +27,7 @@
           ],
           "Effect": "Allow",
           "Resource": [
-              "arn:aws:s3:::cats-or-dogs-${account_id}"
+              "arn:${partition}:s3:::cats-or-dogs-${account_id}"
           ],
           "Sid": "S3BucketActions"
         }
