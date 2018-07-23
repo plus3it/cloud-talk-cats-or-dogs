@@ -14,13 +14,16 @@ guard-% :
 
 test:
 	@echo "[make]: Running tests..."
-	$(MAKE) test/tf
+	$(MAKE) test/tf/fmt
+	$(MAKE) test/tf/validate
 	@echo "[make]: Passed tests!"
 
-test/tf:
+test/tf/fmt:
 	@echo "[make]: Checking terraform format..."
 	terraform fmt -check=true
 	@echo "[make]: Passed terraform format test!"
+
+test/tf/validate:
 	$(MAKE) validate/all
 	@echo "[make]: Passed terraform validation test!"
 
