@@ -1,3 +1,5 @@
+### REQUIRED Variables
+
 variable "environment" {
   description = "Type of environment -- must be one of: dev, test, prod"
   type        = "string"
@@ -5,12 +7,6 @@ variable "environment" {
 
 variable "ami_owner" {
   description = "Account id/alias of the AMI owner"
-  type        = "string"
-}
-
-variable "instance_type" {
-  default     = "t2.micro"
-  description = "Amazon EC2 instance type"
   type        = "string"
 }
 
@@ -32,6 +28,14 @@ variable "ec2_subnet_ids" {
 variable "lb_subnet_ids" {
   description = "List of subnets to associate to the Load Balancer"
   type        = "list"
+}
+
+### OPTIONAL Variables
+
+variable "instance_type" {
+  default     = "t2.micro"
+  description = "Amazon EC2 instance type"
+  type        = "string"
 }
 
 variable "min_capacity" {
