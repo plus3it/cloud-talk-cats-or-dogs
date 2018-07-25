@@ -1,15 +1,15 @@
 {
     "Statement": [
         {
-          "Action": [
-              "cloudformation:DescribeStackResource",
-              "cloudformation:SignalResource"
-          ],
-          "Effect": "Allow",
-          "Resource": [
-            "arn:${partition}:cloudformation:${region}:${account_id}:stack/cats-or-dogs-*"
-          ],
-          "Sid": "CfnActions"
+            "Action": [
+                "cloudformation:DescribeStackResource",
+                "cloudformation:SignalResource"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:${partition}:cloudformation:${region}:${account_id}:stack/cats-or-dogs-*"
+            ],
+            "Sid": "CfnActions"
         },
         {
             "Action": [
@@ -22,14 +22,14 @@
             "Sid": "S3ObjectActions"
         },
         {
-          "Action": [
-              "s3:ListBucket"
-          ],
-          "Effect": "Allow",
-          "Resource": [
-              "arn:${partition}:s3:::cats-or-dogs-${account_id}"
-          ],
-          "Sid": "S3BucketActions"
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:${partition}:s3:::cats-or-dogs-${account_id}"
+            ],
+            "Sid": "S3BucketActions"
         }
     ],
     "Version": "2012-10-17"
