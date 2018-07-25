@@ -199,6 +199,7 @@ module "autoscaling_group" {
   CfnBootstrapUtilsUrl = "${var.cfn_bootstrap_utils_url}"
   CfnGetPipUrl         = "${var.cfn_get_pip_url}"
   CfnEndpointUrl       = "${var.cfn_endpoint_url}"
+  CloudWatchAgentUrl   = "${var.cloudwatch_agent_url}"
   KeyPairName          = "${var.key_pair_name}"
   InstanceRole         = "${local.instance_role}"
   InstanceType         = "${var.instance_type}"

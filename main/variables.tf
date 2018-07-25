@@ -86,6 +86,12 @@ variable "cfn_bootstrap_utils_url" {
   default     = "https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz"
 }
 
+variable "cloudwatch_agent_url" {
+  type        = "string"
+  description = "(Optional) S3 URL to CloudWatch Agent installer. Example: s3://amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip"
+  default     = ""
+}
+
 variable "watchmaker_config" {
   type        = "string"
   description = "(Optional) URL to a Watchmaker config file"
