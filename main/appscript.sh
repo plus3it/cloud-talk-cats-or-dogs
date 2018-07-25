@@ -16,10 +16,12 @@ AWS_AZ=$(curl -sSL http://169.254.169.254/latest/meta-data/placement/availabilit
 AWS_DOMAIN=$(curl -sSL http://169.254.169.254/latest/meta-data/services/domain)
 SALT_SLUG="${BUILD_SLUG}/salt"
 STATIC_SLUG="${BUILD_SLUG}/static"
-BASE_URL="https://s3.${AWS_DOMAIN}/${STATIC_SLUG}"
 
 # Export standard aws envs
 export AWS_DEFAULT_REGION=${AWS_AZ:0:${#AWS_AZ} - 1}
+
+# More internal vars
+BASE_URL="https://s3.${AWS_DEFAULT_REGION}.${AWS_DOMAIN}/${STATIC_SLUG}"
 
 echo "[appscript]: Ensuring default salt srv location exists, /srv/salt..."
 mkdir -p /srv/salt
