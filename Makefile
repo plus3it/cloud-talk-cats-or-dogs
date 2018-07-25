@@ -3,6 +3,10 @@ MAKEFLAGS += --quiet
 SHELL := bash
 .SHELLFLAGS := -eu -o pipefail -c
 
+XARGS_CMD := xargs -I {}
+BIN_DIR := ${HOME}/bin
+PATH := $(BIN_DIR):${PATH}
+
 TF_MODULES := iam bucket main
 TF_COMMANDS := apply plan destroy validate
 
@@ -12,11 +16,24 @@ guard-% :
 		exit 1; \
 	fi
 
+tools/json: JQ_URL := https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+tools/json:
+	curl -sSL "$(JQ_URL)" -o jq
+	chmod +x ./jq
+	mv ./jq "$(BIN_DIR)"
+	jq --version
+
 test:
 	@echo "[make]: Running tests..."
-	$(MAKE) test/tf/fmt
+	$(MAKE) test/tf/fmt test/json/lint
 	$(MAKE) test/tf/validate
 	@echo "[make]: Passed tests!"
+
+test/json/%: FIND_JSON := find . -not \( -name .terraform -prune \) -name '*.json' -type f
+test/json/lint:
+	@echo "[make] Linting JSON files..."
+	$(FIND_JSON) | $(XARGS_CMD) bash -c 'cmp {} <(jq --indent 4 -S . {}) || (echo "[{}]: Failed JSON Lint Test"; exit 1)'
+	@echo "[make] JSON files PASSED lint test!"
 
 test/tf/fmt:
 	@echo "[make]: Checking terraform format..."

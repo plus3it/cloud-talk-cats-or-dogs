@@ -5,7 +5,7 @@
 variable "url_suffix" {
   default     = "amazonaws.com"
   description = "URL suffix associated with the current partition"
-  value       = "string"
+  type        = "string"
 }
 
 ###
