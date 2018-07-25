@@ -37,6 +37,6 @@ echo "[appscript]: Setting required salt grains..."
 salt-call --local grains.set cats-or-dogs "{'base_url':'${BASE_URL}', 'cats_az':'${CATS_AZ}'}" force=True
 
 echo "[appscript]: Applying the cats-or-dogs state..."
-salt-call --local state.sls cats-or-dogs
+salt-call --local --retcode-passthrough state.sls cats-or-dogs
 
 echo "[appscript]: Completed cats-or-dogs appscript successfully!"
