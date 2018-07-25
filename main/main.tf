@@ -103,6 +103,7 @@ resource "aws_lb" "this" {
   name            = "${local.name_id}"
   security_groups = ["${aws_security_group.lb.id}"]
   subnets         = ["${var.lb_subnet_ids}"]
+  internal        = "${var.lb_internal}"
 }
 
 resource "aws_lb_target_group" "this" {

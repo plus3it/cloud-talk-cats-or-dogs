@@ -38,6 +38,12 @@ variable "instance_type" {
   type        = "string"
 }
 
+variable "lb_internal" {
+  description = "Boolean indicating whether the load balancer is internal or external"
+  type        = "string"
+  default     = false
+}
+
 variable "min_capacity" {
   type        = "string"
   description = "(Optional) Minimum number of instances in the Autoscaling Group"
