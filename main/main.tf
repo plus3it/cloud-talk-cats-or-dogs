@@ -4,7 +4,7 @@
 
 locals {
   name            = "cats-or-dogs"
-  name_id         = "${local.name}-${random_id.this.id}"
+  name_id         = "${local.name}-${random_string.this.id}"
   bucket          = "${local.name}-${data.aws_caller_identity.current.account_id}"
   ami_name_filter = "spel-minimal-centos-7-hvm-*.x86_64-gp2"
   ami_name_regex  = "spel-minimal-centos-7-hvm-\\d{4}\\.\\d{2}\\.\\d{1}\\.x86_64-gp2"
@@ -49,8 +49,9 @@ data "aws_subnet" "lb" {
 ###
 
 # Generate a random id for each deployment
-resource "random_id" "this" {
-  byte_length = 8
+resource "random_string" "this" {
+  length  = 8
+  special = "false"
 }
 
 # Manage bucket contents
@@ -58,24 +59,24 @@ locals {
   s3_sync_static = [
     "aws s3 sync --delete --acl public-read",
     "${path.module}/static",
-    "s3://${local.bucket}/${random_id.this.id}/static",
+    "s3://${local.bucket}/${random_string.this.id}/static",
   ]
 
   s3_sync_salt = [
     "aws s3 sync --delete",
     "${path.module}/salt",
-    "s3://${local.bucket}/${random_id.this.id}/salt",
+    "s3://${local.bucket}/${random_string.this.id}/salt",
   ]
 
   s3_sync_appscript = [
     "aws s3 sync --exclude \"*\" --include appscript.sh",
     "${path.module}",
-    "s3://${local.bucket}/${random_id.this.id}",
+    "s3://${local.bucket}/${random_string.this.id}",
   ]
 
   s3_rm = [
     "aws s3 rm --recursive",
-    "s3://${local.bucket}/${random_id.this.id}",
+    "s3://${local.bucket}/${random_string.this.id}",
   ]
 }
 
@@ -174,8 +175,8 @@ resource "random_shuffle" "cats_az" {
 }
 
 locals {
-  appscript_url    = "s3://${local.bucket}/${random_id.this.id}/appscript.sh"
-  appscript_params = "${local.bucket}/${random_id.this.id} ${random_shuffle.cats_az.result[0]}"
+  appscript_url    = "s3://${local.bucket}/${random_string.this.id}/appscript.sh"
+  appscript_params = "${local.bucket}/${random_string.this.id} ${random_shuffle.cats_az.result[0]}"
 }
 
 module "autoscaling_group" {
