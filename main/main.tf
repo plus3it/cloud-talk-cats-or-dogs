@@ -97,6 +97,12 @@ resource "null_resource" "sync_s3" {
     command = "${join(" ", local.s3_rm)}"
     when    = "destroy"
   }
+
+  triggers = {
+    s3_sync_static    = "${join(" ", local.s3_sync_static)}"
+    s3_sync_salt      = "${join(" ", local.s3_sync_salt)}"
+    s3_sync_appscript = "${join(" ", local.s3_sync_appscript)}"
+  }
 }
 
 # Manage load balancer
