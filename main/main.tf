@@ -68,7 +68,7 @@ locals {
   ]
 
   s3_sync_appscript = [
-    "aws s3 sync --exclude * --include appscript.sh",
+    "aws s3 sync --exclude \"*\" --include appscript.sh",
     "${path.module}",
     "s3://${local.bucket}/${random_id.this.id}",
   ]
