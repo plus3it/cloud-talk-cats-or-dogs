@@ -1,7 +1,7 @@
 # Build outputs
 output "build_id" {
   description = "Random ID generated for the build"
-  value       = "${random_id.this.id}"
+  value       = "${random_string.this.id}"
 }
 
 output "cats_az" {

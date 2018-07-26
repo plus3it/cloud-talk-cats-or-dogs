@@ -3,8 +3,13 @@ terraform.tfstate
 terraform.tfstate.backup
 .terraform/
 terraform.tfstate.d/
+.terraform.tfstate.lock.info
 
 # User state
 .filecache
 .env
 *.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json

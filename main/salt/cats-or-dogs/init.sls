@@ -1,6 +1,6 @@
 Manage selinux mode:
   selinux.mode:
-    - name: disabled
+    - name: permissive
 
 Install httpd package:
   pkg.installed:

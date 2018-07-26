@@ -38,6 +38,12 @@ variable "instance_type" {
   type        = "string"
 }
 
+variable "lb_internal" {
+  description = "Boolean indicating whether the load balancer is internal or external"
+  type        = "string"
+  default     = false
+}
+
 variable "min_capacity" {
   type        = "string"
   description = "(Optional) Minimum number of instances in the Autoscaling Group"
@@ -78,6 +84,12 @@ variable "cfn_bootstrap_utils_url" {
   type        = "string"
   description = "(Optional) URL to aws-cfn-bootstrap-latest.tar.gz"
   default     = "https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz"
+}
+
+variable "cloudwatch_agent_url" {
+  type        = "string"
+  description = "(Optional) S3 URL to CloudWatch Agent installer. Example: s3://amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip"
+  default     = ""
 }
 
 variable "watchmaker_config" {

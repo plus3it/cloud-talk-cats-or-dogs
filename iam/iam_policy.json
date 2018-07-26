@@ -17,7 +17,8 @@
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:${partition}:s3:::cats-or-dogs-${account_id}/*"
+                "arn:${partition}:s3:::cats-or-dogs-${account_id}/*",
+                "arn:${partition}:s3:::amazoncloudwatch-agent/*"
             ],
             "Sid": "S3ObjectActions"
         },
@@ -30,7 +31,19 @@
                 "arn:${partition}:s3:::cats-or-dogs-${account_id}"
             ],
             "Sid": "S3BucketActions"
-        }
-    ],
+        },
+        {
+          "Action": [
+              "logs:CreateLogStream",
+              "logs:DescribeLogStreams",
+              "logs:PutLogEvents"
+          ],
+          "Effect": "Allow",
+          "Resource": [
+              "arn:${partition}:logs:${region}:${account_id}:log-group:/aws/ec2/lx/cats-or-dogs-*"
+          ],
+          "Sid": "CloudWatchLogActions"
+      }
+  ],
     "Version": "2012-10-17"
 }
