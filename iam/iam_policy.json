@@ -33,17 +33,17 @@
             "Sid": "S3BucketActions"
         },
         {
-          "Action": [
-              "logs:CreateLogStream",
-              "logs:DescribeLogStreams",
-              "logs:PutLogEvents"
-          ],
-          "Effect": "Allow",
-          "Resource": [
-              "arn:${partition}:logs:${region}:${account_id}:log-group:/aws/ec2/lx/cats-or-dogs-*"
-          ],
-          "Sid": "CloudWatchLogActions"
-      }
-  ],
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:${partition}:logs:${region}:${account_id}:log-group:/aws/ec2/lx/cats-or-dogs-*"
+            ],
+            "Sid": "CloudWatchLogActions"
+        }
+    ],
     "Version": "2012-10-17"
 }
