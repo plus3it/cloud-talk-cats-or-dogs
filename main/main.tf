@@ -188,7 +188,7 @@ locals {
 }
 
 module "autoscaling_group" {
-  source = "git::https://github.com/plus3it/terraform-aws-watchmaker//modules/lx-autoscale?ref=2.0.0"
+  source = "git::https://github.com/plus3it/terraform-aws-watchmaker//modules/lx-autoscale?ref=2.1.1"
 
   Name            = local.name_id
   OnFailureAction = ""
